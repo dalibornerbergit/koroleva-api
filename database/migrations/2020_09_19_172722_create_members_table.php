@@ -16,8 +16,11 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('second_name');
+            $table->string('last_name');
             $table->string('phone');
+            $table->date('birth_date');
+            $table->text('record');
+            $table->bigInteger('group_id')->unsigned();
             $table->timestamps();
         });
     }
