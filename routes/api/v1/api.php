@@ -21,10 +21,12 @@ use Illuminate\Support\Facades\Route;
 // Users
 Route::prefix("/user")->group(function () {
     Route::post("/login", 'App\Http\Controllers\api\v1\LoginController@login');
-    // Route::get("/", 'App\Http\Controllers\api\v1\LoginController@user')->middleware('auth:api');
+    Route::get("/", 'App\Http\Controllers\api\v1\LoginController@user')->middleware('auth:api');
     // Route::middleware("auth:api")->get("/all", 'App\Http\Controllers\api\v1\user\UserController@index');
     // Route::middleware("auth:api")->post("/", 'App\Http\Controllers\api\v1\user\UserController@store');
 });
 
 // Route::apiResource("/user", 'App\Http\Controllers\api\v1\user\UserController');
 Route::apiResource('/member', 'App\Http\Controllers\MemberController');
+Route::apiResource('/group', 'App\Http\Controllers\GroupController');
+Route::apiResource('/training', 'App\Http\Controllers\TrainingController');

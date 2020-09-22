@@ -14,12 +14,15 @@ class MemberController extends Controller
         return new MemberResourceCollection(Member::paginate());
     }
 
-    public function store(Request $request) 
+    public function store(Request $request): MemberResource
     {
         $request->validate([
             'first_name' => 'required',
-            'second_name' => 'required',
+            'last_name' => 'required',
             'phone' => 'required',
+            'birth_date' => 'required',
+            'record' => 'required',
+            'group_id' => 'required',
         ]);
 
         $member = Member::create($request->all());
