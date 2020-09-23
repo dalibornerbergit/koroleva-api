@@ -11,7 +11,7 @@ class GroupController extends Controller
 {
     public function index(): GroupResourceCollection
     {
-        return new GroupResourceCollection(Group::paginate());
+        return new GroupResourceCollection(Group::all());
     }
 
     public function store(Request $request): GroupResource

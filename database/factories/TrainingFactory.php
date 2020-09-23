@@ -25,7 +25,7 @@ class TrainingFactory extends Factory
         return [
             'date' => $this->faker->date,
             'record' => $this->faker->text,
-            'group_id' => 2
+            'group_id' => 1
         ];
     }
 }
