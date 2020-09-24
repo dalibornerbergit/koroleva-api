@@ -9,6 +9,8 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $with = ['group'];
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -17,4 +19,13 @@ class Member extends Model
         'record',
         'group_id'
     ];
+
+    public function group() {
+        return $this->belongsTo(Group::class);
+    }
+
+    public function trainings()
+    {
+        return $this->belongsToMany(Training::class, 'presence');
+    }
 }

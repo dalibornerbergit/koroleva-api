@@ -13,4 +13,12 @@ class Group extends Model
         'name',
         'record'
     ];
+
+    public function members() {
+        return $this->hasMany(Member::class);
+    }
+
+    public function trainings() {
+        return $this->hasMany(Training::class);
+    }
 }
