@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function index(): MemberResourceCollection
+    public function index(Request $request): MemberResourceCollection
     {
-        return new MemberResourceCollection(Member::paginate());
+        $query = Member::query();
+
+        if ($request->first_name)
+            $query->where('first_name', 'like', $request->first_name);
+
+        if ($request->group_id) {
+            $query->where('group_id', 'like', $request->group_id);
+
+            return new MemberResourceCollection($query->get());
+        }
+
+        return new MemberResourceCollection($query->paginate());
     }
 
     public function store(Request $request): MemberResource

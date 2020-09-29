@@ -30,4 +30,6 @@ Route::prefix("/user")->group(function () {
 Route::apiResource('/member', 'App\Http\Controllers\MemberController');
 Route::apiResource('/group', 'App\Http\Controllers\GroupController');
 Route::apiResource('/training', 'App\Http\Controllers\TrainingController');
-Route::apiResource('/presence', 'App\Http\Controllers\PresenceController');
+
+Route::post('/presence', 'App\Http\Controllers\PresenceController@attachMembers');
+// Route::get('/presence/{id}', 'App\Http\Controllers\PresenceController@getMembers');

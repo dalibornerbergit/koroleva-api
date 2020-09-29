@@ -9,7 +9,7 @@ class Training extends Model
 {
     use HasFactory;
 
-    protected $with = ['group'];
+    protected $with = ['group', 'members'];
 
     protected $fillable = [
         'date',
@@ -17,7 +17,8 @@ class Training extends Model
         'group_id'
     ];
 
-    public function group() {
+    public function group()
+    {
         return $this->belongsTo(Group::class);
     }
 
