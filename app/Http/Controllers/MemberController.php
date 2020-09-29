@@ -13,12 +13,12 @@ class MemberController extends Controller
     {
         $query = Member::query();
 
-        if ($request->first_name)
+        if ($request->first_name) {
             $query->where('first_name', 'like', $request->first_name);
+        }
 
-        if ($request->group_id) {
+        if (json_decode($request->group_id)) {
             $query->where('group_id', 'like', $request->group_id);
-
             return new MemberResourceCollection($query->get());
         }
 
