@@ -27,9 +27,9 @@ Route::prefix("/user")->group(function () {
 });
 
 // Route::apiResource("/user", 'App\Http\Controllers\api\v1\user\UserController');
-Route::apiResource('/member', 'App\Http\Controllers\MemberController');
-Route::apiResource('/group', 'App\Http\Controllers\GroupController');
-Route::apiResource('/training', 'App\Http\Controllers\TrainingController');
+Route::apiResource('/members', 'App\Http\Controllers\MemberController');
+Route::apiResource('/groups', 'App\Http\Controllers\GroupController');
+Route::apiResource('/trainings', 'App\Http\Controllers\TrainingController');
 
 Route::post('/presence', 'App\Http\Controllers\PresenceController@attachMembers');
 // Route::get('/presence/{id}', 'App\Http\Controllers\PresenceController@getMembers');
