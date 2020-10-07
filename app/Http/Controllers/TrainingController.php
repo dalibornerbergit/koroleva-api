@@ -11,7 +11,7 @@ class TrainingController extends Controller
 {
     public function index(): TrainingResourceCollection
     {
-        return new TrainingResourceCollection(Training::paginate());
+        return new TrainingResourceCollection(Training::latest()->paginate());
     }
 
     public function store(Request $request): TrainingResource
@@ -24,6 +24,8 @@ class TrainingController extends Controller
 
         $training = Training::create($request->all());
 
+        $training->group;
+
         return new TrainingResource($training);
     }
 
@@ -35,6 +37,8 @@ class TrainingController extends Controller
     public function update(Training $training, Request $request): TrainingResource
     {
         $training->update($request->all());
+
+        $training->refresh();
 
         return new TrainingResource($training);
     }

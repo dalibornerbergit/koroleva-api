@@ -11,7 +11,7 @@ class GroupController extends Controller
 {
     public function index(): GroupResourceCollection
     {
-        return new GroupResourceCollection(Group::with('trainings', 'members')->get());
+        return new GroupResourceCollection(Group::with('trainings', 'members')->latest()->get());
     }
 
     public function store(Request $request): GroupResource

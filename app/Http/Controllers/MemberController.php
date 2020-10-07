@@ -19,10 +19,10 @@ class MemberController extends Controller
 
         if (json_decode($request->group_id)) {
             $query->where('group_id', 'like', $request->group_id);
-            return new MemberResourceCollection($query->get());
+            return new MemberResourceCollection($query->latest()->get());
         }
 
-        return new MemberResourceCollection($query->paginate());
+        return new MemberResourceCollection($query->latest()->paginate());
     }
 
     public function store(Request $request): MemberResource
@@ -38,6 +38,8 @@ class MemberController extends Controller
 
         $member = Member::create($request->all());
 
+        $member->group;
+
         return new MemberResource($member);
     }
 
@@ -49,6 +51,8 @@ class MemberController extends Controller
     public function update(Member $member, Request $request): MemberResource
     {
         $member->update($request->all());
+
+        $member->refresh();
 
         return new MemberResource($member);
     }

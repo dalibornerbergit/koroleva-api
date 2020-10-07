@@ -42,8 +42,10 @@ class PresenceController extends Controller
     {
         $training = Training::find($request->training_id);
 
-        $training->members()->detach();
+        $training->members()->sync($request->members);
 
-        $training->members()->attach(json_decode($request->members));
+        $training->refresh();
+
+        return $training;
     }
 }
