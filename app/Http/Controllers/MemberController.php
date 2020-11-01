@@ -19,10 +19,10 @@ class MemberController extends Controller
 
         if (json_decode($request->group_id)) {
             $query->where('group_id', 'like', $request->group_id);
-            return new MemberResourceCollection($query->latest()->paginate());
+            return new MemberResourceCollection($query->latest()->paginate(30));
         }
 
-        return new MemberResourceCollection($query->latest()->paginate());
+        return new MemberResourceCollection($query->latest()->paginate(30));
     }
 
     public function store(Request $request): MemberResource
