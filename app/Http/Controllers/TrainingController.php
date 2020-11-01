@@ -9,8 +9,15 @@ use Illuminate\Http\Request;
 
 class TrainingController extends Controller
 {
-    public function index(): TrainingResourceCollection
+    public function index(Request $request): TrainingResourceCollection
     {
+        $query = Training::query();
+
+        if (json_decode($request->group_id)) {
+            $query->where('group_id', 'like', $request->group_id);
+            return new TrainingResourceCollection($query->latest()->paginate());
+        }
+
         return new TrainingResourceCollection(Training::latest()->paginate());
     }
 
