@@ -14,22 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 // Users
 Route::prefix("/user")->group(function () {
     Route::post("/login", 'App\Http\Controllers\api\v1\LoginController@login');
     Route::get("/", 'App\Http\Controllers\api\v1\LoginController@user')->middleware('auth:api');
-    // Route::middleware("auth:api")->get("/all", 'App\Http\Controllers\api\v1\user\UserController@index');
-    // Route::middleware("auth:api")->post("/", 'App\Http\Controllers\api\v1\user\UserController@store');
 });
 
-// Route::apiResource("/user", 'App\Http\Controllers\api\v1\user\UserController');
-Route::apiResource('/members', 'App\Http\Controllers\MemberController')->middleware('auth:api');
+Route::apiResource('/members', 'App\Http\Controllers\MemberController');
 Route::apiResource('/groups', 'App\Http\Controllers\GroupController')->middleware('auth:api');
 Route::apiResource('/trainings', 'App\Http\Controllers\TrainingController')->middleware('auth:api');
 
 Route::post('/presence', 'App\Http\Controllers\PresenceController@attachMembers')->middleware('auth:api');
-// Route::get('/presence/{id}', 'App\Http\Controllers\PresenceController@getMembers');

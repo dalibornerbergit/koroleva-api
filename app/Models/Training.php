@@ -9,7 +9,7 @@ class Training extends Model
 {
     use HasFactory;
 
-    protected $with = ['group', 'members'];
+    protected $with = ['group'];
 
     protected $fillable = [
         'date',

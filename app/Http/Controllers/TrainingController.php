@@ -13,12 +13,13 @@ class TrainingController extends Controller
     {
         $query = Training::query();
 
-        if (json_decode($request->group_id)) {
-            $query->where('group_id', 'like', $request->group_id);
-            return new TrainingResourceCollection($query->latest()->paginate(30));
-        }
+        $query->with('members');
 
-        return new TrainingResourceCollection(Training::latest()->paginate(30));
+        if (json_decode($request->group_id))
+            $query->where('group_id', $request->group_id);
+
+
+        return new TrainingResourceCollection($query->latest()->paginate(30));
     }
 
     public function store(Request $request): TrainingResource
