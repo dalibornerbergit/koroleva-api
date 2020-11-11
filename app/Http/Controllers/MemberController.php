@@ -31,7 +31,6 @@ class MemberController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
-            'birth_date' => 'required',
             'record' => 'required',
             'group_id' => 'required',
         ]);
