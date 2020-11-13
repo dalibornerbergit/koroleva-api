@@ -14,15 +14,14 @@ class MemberController extends Controller
         $query = Member::query();
 
         if ($request->first_name) {
-            $query->where('first_name', 'like', $request->first_name);
+            $query->where('first_name', 'like', '%' .  $request->first_name . '%');
         }
 
         if (json_decode($request->group_id)) {
             $query->where('group_id', 'like', $request->group_id);
-            return new MemberResourceCollection($query->latest()->paginate(30));
         }
 
-        return new MemberResourceCollection($query->latest()->paginate(30));
+        return new MemberResourceCollection($query->latest()->paginate(32));
     }
 
     public function store(Request $request): MemberResource

@@ -15,11 +15,12 @@ class TrainingController extends Controller
 
         $query->with('members');
 
-        if (json_decode($request->group_id))
+        if (json_decode($request->group_id)) {
             $query->where('group_id', $request->group_id);
+        }
 
 
-        return new TrainingResourceCollection($query->latest()->paginate(30));
+        return new TrainingResourceCollection($query->latest()->paginate(32));
     }
 
     public function store(Request $request): TrainingResource
